@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ultikits</groupId>
+    <artifactId>UltiCore-Core</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+
+    <licenses>
+        <license>
+            <name>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</name>
+            <url>https://github.com/wisdommen/UltiTools/blob/master/LICENSE</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>wisdomme</name>
+            <email>xia.erich03@gmail.com</email>
+        </developer>
+    </developers>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <modules>
+        <module>UltiCoreAPI</module>
+        <module>1_8_R1</module>
+        <module>1_8_R2</module>
+        <module>1_8_R3</module>
+        <module>1_9_R1</module>
+        <module>1_9_R2</module>
+        <module>1_10_R1</module>
+        <module>1_11_R1</module>
+        <module>1_12_R1</module>
+        <module>1_13_R1</module>
+        <module>1_13_R2</module>
+        <module>1_14_4_R1</module>
+        <module>1_14_R1</module>
+        <module>1_15_R1</module>
+        <module>1_16_R1</module>
+        <module>1_16_R2</module>
+        <module>1_16_R3</module>
+    </modules>
+
+    <distributionManagement>
+        <repository>
+            <id>UltiCoreAPI-release</id>
+            <name>Release Repository of UltiCore</name>
+            <url>http://ultikits.com:8081/repository/UltiCoreAPI-release/</url>
+        </repository>
+        <snapshotRepository>
+            <id>UltiCoreAPI-snapshot</id>
+            <name>Snapshot Repository of UltiCore</name>
+            <url>http://ultikits.com:8081/repository/UltiCoreAPI-snapshot/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>bukkit-repo</id>
+            <url>http://repo.bukkit.org/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>spigotmc-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>placeholderapi</id>
+            <url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
+            <id>dmulloy2-repo</id>
+            <url>https://repo.dmulloy2.net/nexus/repository/public/</url>
+        </repository>
+    </repositories>
+
+</project>
