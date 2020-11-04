@@ -12,10 +12,9 @@ public class LanguageUtils {
 
     private String language;
     private String filePath;
-    private static LanguageUtils instance = null;
     private Properties properties;
 
-    private LanguageUtils(String languageFilePath, String language) {
+    public LanguageUtils(String languageFilePath, String language) {
         ResourceFile resourceFile = null;
         this.filePath = languageFilePath;
         this.language = language;
@@ -28,18 +27,11 @@ public class LanguageUtils {
     }
 
     public void setLanguage(String language) {
-        instance = new LanguageUtils(filePath, language);
+        this.language = language;
     }
 
     public String getLanguage() {
         return language;
-    }
-
-    public static LanguageUtils getInstance(String filePath, String language) {
-        if (instance == null) {
-            return new LanguageUtils(filePath, language);
-        }
-        return instance;
     }
 
     public String getWords(String key) {

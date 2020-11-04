@@ -1,5 +1,6 @@
 package com.ultikits.utils;
 
+import com.ultikits.main.UltiCoreAPI;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.jetbrains.annotations.NotNull;
@@ -11,22 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static com.minecraft.ultikits.utils.Utils.getToolsConfig;
-
-
 public class DatabaseUtils {
 
-    private static final String ip = getToolsConfig().getString("host");
-    private static final String port = getToolsConfig().getString("port");
-    private static final String username = getToolsConfig().getString("username");
-    private static final String password = getToolsConfig().getString("password");
-    private static final String database = getToolsConfig().getString("database");
+    private static final String ip = UltiCoreAPI.getDatabaseIP();
+    private static final String port = UltiCoreAPI.getDatabasePort();
+    private static final String username = UltiCoreAPI.getDatabaseUsername();
+    private static final String password = UltiCoreAPI.getDatabasePassword();
+    private static final String database = UltiCoreAPI.getDatabaseName();
 
     private static final DataSource dataSource;
 
     //初始化连接池
     static {
-        if (getToolsConfig().getBoolean("enableDataBase")) {
+        if (UltiCoreAPI.isDatabaseEnabled()) {
             HikariConfig config = new HikariConfig();
             config.setJdbcUrl("jdbc:mysql://" + ip + ":" + port + "/" + database + "?useUnicode=true&characterEncoding=utf-8&useSSL=false");
             config.setUsername(username);
@@ -464,7 +462,7 @@ public class DatabaseUtils {
      * @param fields 需要转换的fields
      * @return 一个MySQL语句
      */
-    private static @NotNull String getFields(String @NotNull [] fields) {
+    private static @NotNull String getFields(String[] fields) {
         StringBuilder builder = new StringBuilder();
         int i = 0;
         for (String arg : fields) {
@@ -480,7 +478,7 @@ public class DatabaseUtils {
      * @param fields 需要转换的fields
      * @return 一个MySQL语句
      */
-    private static @NotNull String insertFields(String @NotNull [] fields) {
+    private static @NotNull String insertFields(String[] fields) {
         StringBuilder builder = new StringBuilder();
         int i = 0;
         for (String arg : fields) {
@@ -496,7 +494,7 @@ public class DatabaseUtils {
      * @param values 需要转换的fields
      * @return 一个MySQL语句
      */
-    private static @NotNull String insertValues(String @NotNull [] values) {
+    private static @NotNull String insertValues(String[] values) {
         StringBuilder builder = new StringBuilder();
         int i = 0;
         for (String arg : values) {

@@ -1,7 +1,7 @@
 package com.ultikits.api;
 
-import com.ultikits.enums.Sounds;
 import com.ultikits.enums.Colors;
+import com.ultikits.enums.Sounds;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;

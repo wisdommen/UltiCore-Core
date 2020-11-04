@@ -49,7 +49,7 @@ public class VersionAdaptor {
         try {
             return versions.stream()
                     .filter(version -> version.getSimpleName().substring(7).equals(serverVersion))
-                    .findFirst().orElseThrow(() -> new RuntimeException("Your server version isn't supported in UltiTools!"))
+                    .findFirst().orElseThrow(() -> new RuntimeException("Your server version isn't supported in UltiCoreAPI!"))
                     .newInstance();
         } catch (IllegalAccessException | InstantiationException ex) {
             throw new RuntimeException(ex);
