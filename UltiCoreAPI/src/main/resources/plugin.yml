@@ -1,0 +1,11 @@
+name: UltiCore
+version: ${project.version}
+main: com.ultikits.main.UltiCore
+api-version: 1.13
+prefix: UltiTools
+loadbefore: [ UltiTools ]
+depend: [PlaceholderAPI, Vault]
+softdepend: [UltiEconomy, UltiLevel]
+authors: [wisdomme]
+description: This is a plugin inclouds some basic plugin fuctions for a server
+

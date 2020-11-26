@@ -3,14 +3,16 @@ package com.ultikits.main;
 import com.ultikits.api.VersionWrapper;
 import com.ultikits.inventoryapi.PageRegister;
 import com.ultikits.utils.LanguageUtils;
+import com.ultikits.utils.Metrics;
 import com.ultikits.utils.VersionAdaptor;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bstats.bukkit.Metrics;
+
+import java.io.File;
 
 public class UltiCoreAPI {
-    private static JavaPlugin plugin;
+    private JavaPlugin plugin;
     String language = "en_us";
     String dataFolder;
     private static PageRegister pageRegister;
@@ -24,30 +26,35 @@ public class UltiCoreAPI {
     private static boolean isVaultInstalled;
     public static LanguageUtils languageUtils;
     public static VersionWrapper versionAdaptor = new VersionAdaptor().match();
+    public static boolean isPapiLoaded;
 
-    {
-        setupVault();
+    static {
+        isPapiLoaded = UltiCore.getInstance().getServer().getPluginManager().getPlugin("PlaceholderAPI") != null;
     }
 
     public UltiCoreAPI(JavaPlugin plugin){
-        UltiCoreAPI.plugin = plugin;
+        this.plugin = plugin;
+        this.dataFolder = plugin.getDataFolder().getAbsolutePath();
         pageRegister = new PageRegister(plugin);
-        dataFolder = plugin.getDataFolder().getPath();
+        languageUtils = new LanguageUtils(dataFolder, language);
+        setupVault();
     }
 
     public UltiCoreAPI(JavaPlugin plugin, String dataFolder){
-        UltiCoreAPI.plugin = plugin;
+        this.plugin = plugin;
         this.dataFolder = dataFolder;
         languageUtils = new LanguageUtils(dataFolder, language);
         pageRegister = new PageRegister(plugin);
+        setupVault();
     }
 
     public UltiCoreAPI(JavaPlugin plugin, String dataFolder, String language){
-        UltiCoreAPI.plugin = plugin;
+        this.plugin = plugin;
         this.dataFolder = dataFolder;
         this.language = language;
         languageUtils = new LanguageUtils(dataFolder, language);
         pageRegister = new PageRegister(plugin);
+        setupVault();
     }
 
     public static PageRegister getPageRegister() {
@@ -87,11 +94,11 @@ public class UltiCoreAPI {
         return isDatabaseEnabled;
     }
 
-    public static JavaPlugin getPlugin(){
-        return plugin;
+    public JavaPlugin getPlugin(){
+        return this.plugin;
     }
 
-    public static Boolean getIsVaultInstalled() {
+    public static Boolean isVaultLoaded() {
         return isVaultInstalled;
     }
 
@@ -111,7 +118,12 @@ public class UltiCoreAPI {
         return econ;
     }
 
-    public static void startBStates(int code) {
-        Metrics metrics = new Metrics(UltiCoreAPI.getPlugin(), code);
+    public void startBStates(int code) {
+        Metrics metrics = new Metrics(plugin, code);
     }
+
+    public static boolean isPapiLoaded() {
+        return isPapiLoaded;
+    }
+
 }

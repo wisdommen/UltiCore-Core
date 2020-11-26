@@ -6,18 +6,25 @@ import org.jetbrains.annotations.Nullable;
 
 public class EconomyUtils {
 
+    private static boolean isUltiEconomyLoaded;
+
     private static @Nullable Class<?> getEconomy(){
         try {
-            return Class.forName("com.minecraft.economy.apis.UltiEconomy");
-        } catch (Exception e) {
-            e.printStackTrace();
+            Class<?> clazz = Class.forName("com.minecraft.economy.apis.UltiEconomy");
+            isUltiEconomyLoaded = false;
+            return clazz;
+        } catch (Exception ignored) {
+            isUltiEconomyLoaded = false;
         }
         return null;
     }
 
     private static boolean hasBalance(OfflinePlayer player, int amount){
-        if (UltiCoreAPI.getIsVaultInstalled()){
+        if (UltiCoreAPI.isVaultLoaded()){
             return UltiCoreAPI.getEcon().has(player, amount);
+        }
+        if (!isUltiEconomyLoaded){
+            return false;
         }
         try{
             Object economy = getEconomy().newInstance();
@@ -30,8 +37,11 @@ public class EconomyUtils {
     }
 
     public static int checkMoney(OfflinePlayer player){
-        if (UltiCoreAPI.getIsVaultInstalled()){
+        if (UltiCoreAPI.isVaultLoaded()){
             return (int) Math.round(UltiCoreAPI.getEcon().getBalance(player));
+        }
+        if (!isUltiEconomyLoaded){
+            return 0;
         }
         try{
             Object economy = getEconomy().newInstance();
@@ -44,19 +54,24 @@ public class EconomyUtils {
     }
 
     public static int checkBank(OfflinePlayer player){
+        if (!isUltiEconomyLoaded){
+            return 0;
+        }
         try{
             Object economy = getEconomy().newInstance();
             Object checkMoney = getEconomy().getMethod("checkBank", String.class).invoke(economy, player.getName());
             return (int) checkMoney;
-        } catch (Exception e){
-            e.printStackTrace();
+        } catch (Exception ignored){
         }
         return 0;
     }
 
     public static boolean withdraw(OfflinePlayer player, int amount){
-        if (UltiCoreAPI.getIsVaultInstalled()){
+        if (UltiCoreAPI.isVaultLoaded()){
             return UltiCoreAPI.getEcon().withdrawPlayer(player, amount).transactionSuccess();
+        }
+        if (!isUltiEconomyLoaded){
+            return false;
         }
         try{
             if (hasBalance(player,amount)){

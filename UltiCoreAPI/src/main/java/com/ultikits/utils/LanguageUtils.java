@@ -54,7 +54,7 @@ class ResourceFile {
             e.printStackTrace();
         }
         Properties p = new Properties();
-        FileInputStream inputStream = new FileInputStream(new File(filePath + File.separator + fileName + ".properties"));
+        FileInputStream inputStream = new FileInputStream(new File(filePath + File.separator + "lang" + File.separator + fileName + ".properties"));
         BufferedReader inStream = new BufferedReader(new InputStreamReader(inputStream));
         try {
             p.load(inStream);
