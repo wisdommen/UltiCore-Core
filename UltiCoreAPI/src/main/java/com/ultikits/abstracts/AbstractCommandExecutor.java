@@ -1,6 +1,6 @@
 package com.ultikits.abstracts;
 
-import com.ultikits.main.UltiCoreAPI;
+import com.ultikits.main.UltiCore;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
@@ -19,11 +19,11 @@ public abstract class AbstractCommandExecutor extends BukkitCommand {
 
     public boolean execute(@NotNull CommandSender sender, @NotNull String commandLabel, @NotNull String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED + UltiCoreAPI.languageUtils.getWords("command_can_only_perform_in_game"));
+            sender.sendMessage(ChatColor.RED + UltiCore.getWords("command_can_only_perform_in_game"));
             return true;
         }
         if (!sender.hasPermission(Objects.requireNonNull(this.getPermission()))){
-            sender.sendMessage(ChatColor.RED + UltiCoreAPI.languageUtils.getWords("no_permission"));
+            sender.sendMessage(ChatColor.RED + UltiCore.getWords("no_permission"));
             return true;
         }
         Player player = (Player) sender;

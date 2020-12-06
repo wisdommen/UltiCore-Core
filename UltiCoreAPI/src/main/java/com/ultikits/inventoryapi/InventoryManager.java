@@ -1,6 +1,7 @@
 package com.ultikits.inventoryapi;
 
 import com.ultikits.enums.Colors;
+import com.ultikits.main.UltiCore;
 import com.ultikits.manager.ItemStackManager;
 import com.ultikits.main.UltiCoreAPI;
 import org.bukkit.Bukkit;
@@ -48,7 +49,7 @@ public class InventoryManager implements InventoryManagerAPI {
         this.owner = owner;
         this.slots = slots;
         this.pageNumber = pageNumber;
-        this.title = title + String.format(" " + UltiCoreAPI.languageUtils.getWords("inventory_manager_title_page_number"), pageNumber);
+        this.title = title + String.format(" " + UltiCore.getWords("inventory_manager_title_page_number"), pageNumber);
         this.groupTitle = title;
         this.isPageButtonEnabled = true;
         this.isLastLineDisabled = true;
@@ -136,7 +137,7 @@ public class InventoryManager implements InventoryManagerAPI {
         if (!isPageButtonEnabled) {
             return;
         }
-        InventoryManager nextPage = ViewManager.getViewByName(getGroupTitle() + String.format(" " + UltiCoreAPI.languageUtils.getWords("inventory_manager_title_page_number"), (getPageNumber() + 1)));
+        InventoryManager nextPage = ViewManager.getViewByName(getGroupTitle() + String.format(" " + UltiCore.getWords("inventory_manager_title_page_number"), (getPageNumber() + 1)));
         if (nextPage == null && autoAddPage) {
             InventoryManager newPage = new InventoryManager(this.owner, this.slots, getGroupTitle(), getPageNumber() + 1);
             if (this.backGroundColor != null) {
@@ -185,7 +186,7 @@ public class InventoryManager implements InventoryManagerAPI {
     }
 
     private void setPageButtons() {
-        this.title = groupTitle + " " + String.format(UltiCoreAPI.languageUtils.getWords("inventory_manager_title_page_number"), pageNumber);
+        this.title = groupTitle + " " + String.format(UltiCore.getWords("inventory_manager_title_page_number"), pageNumber);
         inventory = Bukkit.createInventory(owner, slots, title);
         fillLastLine();
         try {
@@ -211,7 +212,7 @@ public class InventoryManager implements InventoryManagerAPI {
     }
 
     private void fillLastLine() {
-        ItemStack blackGlass = UltiCoreAPI.versionAdaptor.getColoredPlaneGlass(Colors.BLACK);
+        ItemStack blackGlass = UltiCore.versionAdaptor.getColoredPlaneGlass(Colors.BLACK);
         ItemStackManager blank = new ItemStackManager(blackGlass, "");
         for (int i = getSize(); i < inventory.getSize(); i++) {
             this.setItem(i, blank.getItem());
@@ -242,7 +243,7 @@ public class InventoryManager implements InventoryManagerAPI {
 
     @Override
     public void setBackgroundColor(Colors backgroundColor) {
-        ItemStackManager itemStackManager = new ItemStackManager(UltiCoreAPI.versionAdaptor.getColoredPlaneGlass(backgroundColor), "");
+        ItemStackManager itemStackManager = new ItemStackManager(UltiCore.versionAdaptor.getColoredPlaneGlass(backgroundColor), "");
         while (inventory.firstEmpty() > -1) {
             setItem(inventory.firstEmpty(), itemStackManager.getItem());
         }
@@ -261,7 +262,7 @@ public class InventoryManager implements InventoryManagerAPI {
     @Override
     public boolean isBackGround(@Nullable ItemStack item) {
         if (item == null) return false;
-        return item.getType().equals(UltiCoreAPI.versionAdaptor.getColoredPlaneGlass(this.backGroundColor).getType()) && ChatColor.stripColor(item.getItemMeta().getDisplayName()).equals("");
+        return item.getType().equals(UltiCore.versionAdaptor.getColoredPlaneGlass(this.backGroundColor).getType()) && ChatColor.stripColor(item.getItemMeta().getDisplayName()).equals("");
     }
 
     @Override

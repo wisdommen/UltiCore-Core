@@ -1,6 +1,7 @@
 package com.ultikits.inventoryapi;
 
-import com.ultikits.main.UltiCoreAPI;
+import com.ultikits.main.UltiCore;
+import com.ultikits.main.UltiCoreRegister;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
@@ -38,7 +39,7 @@ public class ViewManager {
         if (listener == null) {
             return;
         }
-        UltiCoreAPI.getPageRegister().register(inventoryManager, listener);
+        UltiCore.getPageRegister().register(inventoryManager, listener);
         nameViewsMap.put(inventoryManager.getTitle(), inventoryManager);
         inventoryViewsMap.put(inventoryManager.getInventory(), inventoryManager);
         String groupName = inventoryManager.getGroupTitle();

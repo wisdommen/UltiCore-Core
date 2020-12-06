@@ -1,6 +1,6 @@
 package com.ultikits.inventoryapi;
 
-import com.ultikits.main.UltiCoreAPI;
+import com.ultikits.main.UltiCore;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -33,22 +33,22 @@ public abstract class PagesListener implements Listener {
                     return;
                 }
                 String itemName = ChatColor.stripColor(clicked.getItemMeta().getDisplayName());
-                if (itemName.equals(UltiCoreAPI.languageUtils.getWords("button_previous"))) {
-                    if (inventoryManager.getTitle().contains(String.format(" " + UltiCoreAPI.languageUtils.getWords("inventory_manager_title_page_number"), 1))) {
+                if (itemName.equals(UltiCore.getWords("button_previous"))) {
+                    if (inventoryManager.getTitle().contains(String.format(" " + UltiCore.getWords("inventory_manager_title_page_number"), 1))) {
                         return;
                     }
-                    InventoryManager previousInventory = ViewManager.getViewByName(inventoryManager.getGroupTitle() + " " + String.format(UltiCoreAPI.languageUtils.getWords("inventory_manager_title_page_number"), (inventoryManager.getPageNumber() - 1)));
+                    InventoryManager previousInventory = ViewManager.getViewByName(inventoryManager.getGroupTitle() + " " + String.format(UltiCore.getWords("inventory_manager_title_page_number"), (inventoryManager.getPageNumber() - 1)));
                     if (previousInventory != null) {
                         player.openInventory(previousInventory.getInventory());
                     }
-                } else if (itemName.equals(UltiCoreAPI.languageUtils.getWords("button_next"))) {
-                    InventoryManager nextInventory = ViewManager.getViewByName(inventoryManager.getGroupTitle() + " " + String.format(UltiCoreAPI.languageUtils.getWords("inventory_manager_title_page_number"), (inventoryManager.getPageNumber() + 1)));
+                } else if (itemName.equals(UltiCore.getWords("button_next"))) {
+                    InventoryManager nextInventory = ViewManager.getViewByName(inventoryManager.getGroupTitle() + " " + String.format(UltiCore.getWords("inventory_manager_title_page_number"), (inventoryManager.getPageNumber() + 1)));
                     if (nextInventory != null) {
                         player.openInventory(nextInventory.getInventory());
                     }
-                } else if (itemName.equals(UltiCoreAPI.languageUtils.getWords("button_quit"))) {
+                } else if (itemName.equals(UltiCore.getWords("button_quit"))) {
                     player.closeInventory();
-                } else if (itemName.equals(UltiCoreAPI.languageUtils.getWords("button_back")) || itemName.equals(UltiCoreAPI.languageUtils.getWords("button_ok")) || itemName.equals(UltiCoreAPI.languageUtils.getWords("button_cancel"))) {
+                } else if (itemName.equals(UltiCore.getWords("button_back")) || itemName.equals(UltiCore.getWords("button_ok")) || itemName.equals(UltiCore.getWords("button_cancel"))) {
                     InventoryManager lastInventory = getLastView(inventoryManager);
                     if (lastInventory == null) {
                         player.closeInventory();

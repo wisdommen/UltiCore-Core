@@ -1,7 +1,7 @@
 package com.ultikits.inventoryapi;
 
 import com.ultikits.enums.Colors;
-import com.ultikits.main.UltiCoreAPI;
+import com.ultikits.main.UltiCore;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -11,27 +11,27 @@ public enum Buttons {
     /**
      * Previous buttons.
      */
-    PREVIOUS(UltiCoreAPI.languageUtils.getWords("button_previous"), UltiCoreAPI.versionAdaptor.getColoredPlaneGlass(Colors.RED)),
+    PREVIOUS(UltiCore.getWords("button_previous"), UltiCore.versionAdaptor.getColoredPlaneGlass(Colors.RED)),
     /**
      * Next buttons.
      */
-    NEXT(UltiCoreAPI.languageUtils.getWords("button_next"), UltiCoreAPI.versionAdaptor.getColoredPlaneGlass(Colors.RED)),
+    NEXT(UltiCore.getWords("button_next"), UltiCore.versionAdaptor.getColoredPlaneGlass(Colors.RED)),
     /**
      * Back buttons.
      */
-    BACK(UltiCoreAPI.languageUtils.getWords("button_back"), UltiCoreAPI.versionAdaptor.getSign()),
+    BACK(UltiCore.getWords("button_back"), UltiCore.versionAdaptor.getSign()),
     /**
      * Quit buttons.
      */
-    QUIT(UltiCoreAPI.languageUtils.getWords("button_quit"), UltiCoreAPI.versionAdaptor.getEndEye()),
+    QUIT(UltiCore.getWords("button_quit"), UltiCore.versionAdaptor.getEndEye()),
     /**
      * Ok buttons.
      */
-    OK(UltiCoreAPI.languageUtils.getWords("button_ok"), UltiCoreAPI.versionAdaptor.getColoredPlaneGlass(Colors.GREEN)),
+    OK(UltiCore.getWords("button_ok"), UltiCore.versionAdaptor.getColoredPlaneGlass(Colors.GREEN)),
     /**
      * Cancel buttons.
      */
-    CANCEL(UltiCoreAPI.languageUtils.getWords("button_cancel"), UltiCoreAPI.versionAdaptor.getColoredPlaneGlass(Colors.RED));
+    CANCEL(UltiCore.getWords("button_cancel"), UltiCore.versionAdaptor.getColoredPlaneGlass(Colors.RED));
 
     /**
      * The Name.

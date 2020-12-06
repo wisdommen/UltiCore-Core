@@ -1,6 +1,6 @@
 package com.ultikits.abstracts;
 
-import com.ultikits.main.UltiCoreAPI;
+import com.ultikits.main.UltiCore;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,7 +12,7 @@ public abstract class AbstractConsoleCommandExecutor implements CommandExecutor 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         if (commandSender instanceof Player) {
-            commandSender.sendMessage(ChatColor.RED + UltiCoreAPI.languageUtils.getWords("command_can_only_perform_in_console"));
+            commandSender.sendMessage(ChatColor.RED + UltiCore.getWords("command_can_only_perform_in_console"));
             return false;
         }
         return onConsoleCommand(commandSender, command, strings);
