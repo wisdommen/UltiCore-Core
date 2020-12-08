@@ -7,7 +7,7 @@
     <groupId>com.github.wisdommen</groupId>
     <artifactId>UltiCore-Core</artifactId>
     <packaging>pom</packaging>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <name>UltiCoreAPI</name>
     <description>This is an API for developing a Minecraft Plugin.</description>
     <url>https://ultikits.com/</url>
