@@ -83,6 +83,9 @@ public class InventoryManager implements InventoryManagerAPI {
             setPageButtons();
         } else if (isOkCancelEnabled) {
             setOkCancelButtons();
+        } else if (isLastLineDisabled) {
+            fillLastLine();
+            inventory.setItem(inventory.getSize() - 5, middleButton.getItemStack());
         }
         if (this.backGroundColor != null) {
             setBackgroundColor(this.backGroundColor);
@@ -243,6 +246,9 @@ public class InventoryManager implements InventoryManagerAPI {
 
     @Override
     public void setBackgroundColor(Colors backgroundColor) {
+        if (backgroundColor == null) {
+            return;
+        }
         ItemStackManager itemStackManager = new ItemStackManager(UltiCore.versionAdaptor.getColoredPlaneGlass(backgroundColor), "");
         while (inventory.firstEmpty() > -1) {
             setItem(inventory.firstEmpty(), itemStackManager.getItem());
@@ -273,5 +279,10 @@ public class InventoryManager implements InventoryManagerAPI {
     @Override
     public void setPageButtonEnabled(boolean isPageButtonEnabled) {
         this.isPageButtonEnabled = isPageButtonEnabled;
+    }
+
+    @Override
+    public void setLastLineDisabled(boolean disabled) {
+        this.isLastLineDisabled = disabled;
     }
 }

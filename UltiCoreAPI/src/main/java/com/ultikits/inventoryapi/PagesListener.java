@@ -1,19 +1,21 @@
 package com.ultikits.inventoryapi;
 
+import com.ultikits.beans.CancelResult;
 import com.ultikits.main.UltiCore;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import static com.ultikits.inventoryapi.ViewManager.getLastView;
-
 public abstract class PagesListener implements Listener {
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onInventoryClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
         Inventory currentInventory = event.getClickedInventory();
@@ -22,41 +24,63 @@ public abstract class PagesListener implements Listener {
         if (inventoryManager == null) {
             return;
         }
-        if (clicked != null) {
-            event.setCancelled(true);
+        if (clicked != null && clicked.getType() != Material.AIR) {
             if (event.getSlot() < inventoryManager.getSize() && !inventoryManager.isBackGround(clicked)) {
-                onItemClick(event, player, inventoryManager, clicked);
-                return;
-            }
-            if (clicked.getItemMeta() != null) {
-                if (inventoryManager.isBackGround(clicked) || !inventoryManager.isLastLineDisabled()) {
+                CancelResult cancelled = onItemClick(event, player, inventoryManager, clicked);
+                cancelEvent(event, cancelled);
+            } else if (clicked.getItemMeta() != null) {
+                if (!inventoryManager.isLastLineDisabled()) {
+                    return;
+                }
+                if (inventoryManager.isBackGround(clicked)) {
+                    event.setResult(Event.Result.DENY);
                     return;
                 }
                 String itemName = ChatColor.stripColor(clicked.getItemMeta().getDisplayName());
                 if (itemName.equals(UltiCore.getWords("button_previous"))) {
-                    if (inventoryManager.getTitle().contains(String.format(" " + UltiCore.getWords("inventory_manager_title_page_number"), 1))) {
+                    event.setResult(Event.Result.DENY);
+                    if (inventoryManager.getTitle().contains(String.format(" 第%d页", 1))) {
                         return;
                     }
-                    InventoryManager previousInventory = ViewManager.getViewByName(inventoryManager.getGroupTitle() + " " + String.format(UltiCore.getWords("inventory_manager_title_page_number"), (inventoryManager.getPageNumber() - 1)));
+                    InventoryManager previousInventory = ViewManager.getViewByName(inventoryManager.getGroupTitle() + " " + String.format("第%d页", (inventoryManager.getPageNumber() - 1)));
                     if (previousInventory != null) {
                         player.openInventory(previousInventory.getInventory());
                     }
                 } else if (itemName.equals(UltiCore.getWords("button_next"))) {
-                    InventoryManager nextInventory = ViewManager.getViewByName(inventoryManager.getGroupTitle() + " " + String.format(UltiCore.getWords("inventory_manager_title_page_number"), (inventoryManager.getPageNumber() + 1)));
+                    event.setResult(Event.Result.DENY);
+                    InventoryManager nextInventory = ViewManager.getViewByName(inventoryManager.getGroupTitle() + " " + String.format("第%d页", (inventoryManager.getPageNumber() + 1)));
                     if (nextInventory != null) {
                         player.openInventory(nextInventory.getInventory());
                     }
                 } else if (itemName.equals(UltiCore.getWords("button_quit"))) {
+                    event.setResult(Event.Result.DENY);
                     player.closeInventory();
                 } else if (itemName.equals(UltiCore.getWords("button_back")) || itemName.equals(UltiCore.getWords("button_ok")) || itemName.equals(UltiCore.getWords("button_cancel"))) {
-                    InventoryManager lastInventory = getLastView(inventoryManager);
+                    event.setResult(Event.Result.DENY);
+                    InventoryManager lastInventory = ViewManager.getLastView(inventoryManager);
                     if (lastInventory == null) {
                         player.closeInventory();
                     } else {
-                        ViewManager.openInventoryForPlayer(player, inventoryManager, lastInventory);
+                        player.openInventory(lastInventory.getInventory());
                     }
+                } else {
+                    CancelResult cancelled = onItemClick(event, player, inventoryManager, clicked);
+                    cancelEvent(event, cancelled);
                 }
             }
+        }
+    }
+
+    private void cancelEvent(InventoryClickEvent event, CancelResult cancelled) {
+        switch (cancelled) {
+            case TRUE:
+                event.setCancelled(true);
+                break;
+            case FALSE:
+                event.setCancelled(false);
+                break;
+            case NONE:
+                break;
         }
     }
 
@@ -71,6 +95,6 @@ public abstract class PagesListener implements Listener {
      * @param inventoryManager The inventoryManager that response to this inventory
      * @param clickedItem      the item that been clicked
      */
-    public abstract void onItemClick(InventoryClickEvent event, Player player, InventoryManager inventoryManager, ItemStack clickedItem);
+    public abstract CancelResult onItemClick(InventoryClickEvent event, Player player, InventoryManager inventoryManager, ItemStack clickedItem);
 
 }

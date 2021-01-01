@@ -176,7 +176,7 @@ public interface InventoryManagerAPI {
      *
      * @param backgroundColor the background color
      */
-    void setBackgroundColor(Colors backgroundColor);
+    void setBackgroundColor(@Nullable Colors backgroundColor);
 
     /**
      * Clear back ground.
@@ -208,4 +208,13 @@ public interface InventoryManagerAPI {
      * @param isPageButtonEnabled the is page button enabled
      */
     void setPageButtonEnabled(boolean isPageButtonEnabled);
+
+
+    /**
+     * Sets last line of the inventory disabled
+     * 设置GUI最后一排为不可用
+     *
+     * @param disabled if disable last line
+     */
+    void setLastLineDisabled(boolean disabled);
 }

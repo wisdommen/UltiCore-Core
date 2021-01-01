@@ -1,6 +1,8 @@
 package com.ultikits.main;
 
 import com.ultikits.api.VersionWrapper;
+import com.ultikits.checker.UltiCoreAPIVersionChecker;
+import com.ultikits.commands.CoreCommands;
 import com.ultikits.inventoryapi.PageRegister;
 import com.ultikits.utils.Metrics;
 import com.ultikits.utils.VersionAdaptor;
@@ -14,6 +16,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class UltiCore extends JavaPlugin {
 
@@ -22,8 +25,8 @@ public class UltiCore extends JavaPlugin {
     private static PageRegister pageRegister;
     private static boolean isVaultLoaded;
     public static YamlFileUtils yaml;
-    private static YamlConfiguration languageUtils;
-    private static String language;
+    public static YamlConfiguration languageUtils;
+    public static String language;
     public static VersionWrapper versionAdaptor = new VersionAdaptor().match();
 
     @Override
@@ -35,10 +38,14 @@ public class UltiCore extends JavaPlugin {
         yaml = new YamlFileUtils();
         setLocalLanguage();
         saveDefaultConfig();
-        yaml.saveYamlFile(getDataFolder().getPath() + File.separator + "lang", language + ".yml", language + ".yml");
+        yaml.saveYamlFile(getDataFolder().getPath() + File.separator + "lang", language + ".yml", language + ".yml", true);
         File file = new File(getDataFolder().getPath() + File.separator + "lang", language + ".yml");
         languageUtils = YamlConfiguration.loadConfiguration(file);
+
+        Objects.requireNonNull(this.getCommand("ulticore")).setExecutor(new CoreCommands());
+
         getServer().getConsoleSender().sendMessage("UltiCoreAPI已加载!");
+        UltiCoreAPIVersionChecker.runTask();
     }
 
     @Override

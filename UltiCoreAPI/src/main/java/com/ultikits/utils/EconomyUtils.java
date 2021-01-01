@@ -19,7 +19,7 @@ public class EconomyUtils {
         return null;
     }
 
-    private static boolean hasBalance(OfflinePlayer player, int amount) {
+    private static boolean hasBalance(OfflinePlayer player, double amount) {
         if (UltiCore.getVaultInstalled()) {
             return UltiCore.getEcon().has(player, amount);
         }
@@ -66,7 +66,7 @@ public class EconomyUtils {
         return 0;
     }
 
-    public static boolean withdraw(OfflinePlayer player, int amount) {
+    public static boolean withdraw(OfflinePlayer player, double amount) {
         if (UltiCore.getVaultInstalled()) {
             return UltiCore.getEcon().withdrawPlayer(player, amount).transactionSuccess();
         }
@@ -76,7 +76,26 @@ public class EconomyUtils {
         try {
             if (hasBalance(player, amount)) {
                 Object economy = getEconomy().newInstance();
-                getEconomy().getMethod("takeFrom", String.class, Integer.class).invoke(economy, player.getName(), amount);
+                getEconomy().getMethod("takeFrom", String.class, Double.class).invoke(economy, player.getName(), amount);
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean deposit(OfflinePlayer player, double amount) {
+        if (UltiCore.getVaultInstalled()) {
+            return UltiCore.getEcon().depositPlayer(player, amount).transactionSuccess();
+        }
+        if (!isUltiEconomyLoaded) {
+            return false;
+        }
+        try {
+            if (hasBalance(player, amount)) {
+                Object economy = getEconomy().newInstance();
+                getEconomy().getMethod("addTo", String.class, Double.class).invoke(economy, player.getName(), amount);
                 return true;
             }
         } catch (Exception e) {
