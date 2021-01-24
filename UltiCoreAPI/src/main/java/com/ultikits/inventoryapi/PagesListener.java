@@ -9,6 +9,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -17,6 +18,10 @@ public abstract class PagesListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onInventoryClick(InventoryClickEvent event) {
+        if (event.getAction() == InventoryAction.HOTBAR_MOVE_AND_READD || event.getAction() == InventoryAction.HOTBAR_SWAP){
+            event.setResult(Event.Result.DENY);
+            return;
+        }
         Player player = (Player) event.getWhoClicked();
         Inventory currentInventory = event.getClickedInventory();
         ItemStack clicked = event.getCurrentItem();

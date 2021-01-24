@@ -12,7 +12,6 @@ import com.ultikits.v1_15_R1.Wrapper1_15_R1;
 import com.ultikits.v1_16_R1.Wrapper1_16_R1;
 import com.ultikits.v1_16_R2.Wrapper1_16_R2;
 import com.ultikits.v1_16_R3.Wrapper1_16_R3;
-import com.ultikits.v1_16_R4.Wrapper1_16_R4;
 import com.ultikits.v1_8_R1.Wrapper1_8_R1;
 import com.ultikits.v1_8_R2.Wrapper1_8_R2;
 import com.ultikits.v1_8_R3.Wrapper1_8_R3;
@@ -43,8 +42,7 @@ public class VersionAdaptor {
             Wrapper1_15_R1.class,
             Wrapper1_16_R1.class,
             Wrapper1_16_R2.class,
-            Wrapper1_16_R3.class,
-            Wrapper1_16_R4.class
+            Wrapper1_16_R3.class
     );
 
     public VersionWrapper match() {

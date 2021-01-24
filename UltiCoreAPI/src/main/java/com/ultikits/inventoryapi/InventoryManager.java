@@ -85,7 +85,7 @@ public class InventoryManager implements InventoryManagerAPI {
             setOkCancelButtons();
         } else if (isLastLineDisabled) {
             fillLastLine();
-            inventory.setItem(inventory.getSize() - 5, middleButton.getItemStack());
+            forceSetItem(inventory.getSize() - 5, middleButton.getItemStack());
         }
         if (this.backGroundColor != null) {
             setBackgroundColor(this.backGroundColor);
@@ -109,7 +109,7 @@ public class InventoryManager implements InventoryManagerAPI {
 
     @Override
     public void setItem(int position, ItemStack item) {
-        if (position >= inventory.getSize()) {
+        if (position >= this.getSize()) {
             return;
         }
         if (position < 0) {
@@ -218,7 +218,10 @@ public class InventoryManager implements InventoryManagerAPI {
         ItemStack blackGlass = UltiCore.versionAdaptor.getColoredPlaneGlass(Colors.BLACK);
         ItemStackManager blank = new ItemStackManager(blackGlass, "");
         for (int i = getSize(); i < inventory.getSize(); i++) {
-            this.setItem(i, blank.getItem());
+            if (inventory.getItem(i) != null){
+                continue;
+            }
+            inventory.setItem(i, blank.getItem());
         }
     }
 
@@ -251,7 +254,7 @@ public class InventoryManager implements InventoryManagerAPI {
         }
         ItemStackManager itemStackManager = new ItemStackManager(UltiCore.versionAdaptor.getColoredPlaneGlass(backgroundColor), "");
         while (inventory.firstEmpty() > -1) {
-            setItem(inventory.firstEmpty(), itemStackManager.getItem());
+            forceSetItem(inventory.firstEmpty(), itemStackManager.getItem());
         }
         this.backGroundColor = backgroundColor;
     }
@@ -268,6 +271,8 @@ public class InventoryManager implements InventoryManagerAPI {
     @Override
     public boolean isBackGround(@Nullable ItemStack item) {
         if (item == null) return false;
+        if (this.backGroundColor == null) return false;
+        if (item.getType() == UltiCore.versionAdaptor.getColoredPlaneGlass(Colors.BLACK).getType()) return true;
         return item.getType().equals(UltiCore.versionAdaptor.getColoredPlaneGlass(this.backGroundColor).getType()) && ChatColor.stripColor(item.getItemMeta().getDisplayName()).equals("");
     }
 
