@@ -54,7 +54,7 @@ public class UltiCoreAPIVersionChecker {
                             int onlineVersion = getVersion(version);
                             if (currentVersion < onlineVersion) {
                                 isOutDate = true;
-                                UltiCore.getInstance().getServer().getConsoleSender().sendMessage(ChatColor.RED + String.format(UltiCore.languageUtils.getString("join_send_update_reminding"), version, current_version));
+                                UltiCore.getInstance().getServer().getConsoleSender().sendMessage(ChatColor.RED +"[UltiCore]"+ String.format(UltiCore.languageUtils.getString("join_send_update_reminding"), version, current_version));
                             }
                             break;
                         }

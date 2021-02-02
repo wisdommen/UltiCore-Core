@@ -26,8 +26,8 @@ public class CoreCommands implements TabExecutor {
                     case "upgrade":
                         if (UltiCoreAPIVersionChecker.isOutDate) {
                             UltiCoreAPIVersionChecker.downloadNewVersion();
-                            UltiCoreAPIVersionChecker.deleteOldVersion();
                         } else {
+                            UltiCoreAPIVersionChecker.deleteOldVersion();
                             sender.sendMessage(warning(UltiCore.languageUtils.getString("plugin_up_to_date")));
                         }
                         return true;

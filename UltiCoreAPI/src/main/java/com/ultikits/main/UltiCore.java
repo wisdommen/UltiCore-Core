@@ -8,6 +8,7 @@ import com.ultikits.utils.Metrics;
 import com.ultikits.utils.VersionAdaptor;
 import com.ultikits.utils.YamlFileUtils;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -44,13 +45,13 @@ public class UltiCore extends JavaPlugin {
 
         Objects.requireNonNull(this.getCommand("ulticore")).setExecutor(new CoreCommands());
 
-        getServer().getConsoleSender().sendMessage("UltiCoreAPI已加载!");
+        getServer().getConsoleSender().sendMessage(ChatColor.WHITE+languageUtils.getString("plugin_loaded"));
         UltiCoreAPIVersionChecker.runTask();
     }
 
     @Override
     public void onDisable() {
-        getServer().getConsoleSender().sendMessage("UltiCoreAPI已卸载!");
+        getServer().getConsoleSender().sendMessage(ChatColor.WHITE+languageUtils.getString("plugin_disabled"));
     }
 
     public static UltiCore getInstance(){

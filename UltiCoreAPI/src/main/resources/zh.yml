@@ -67,8 +67,8 @@ kits_function: 礼包系统
 cleaner_function: 清理系统
 permission_function: 权限系统
 login_function: 登陆系统
-plugin_loaded: 基础插件已加载！
-plugin_disabled: 基础插件已卸载！
+plugin_loaded: UltiCore插件已加载！
+plugin_disabled: UltiCore插件已卸载！
 author: 作者：
 player_inventory_full: 你的背包放不下啦，清理一下吧！
 not_enough_money: 你没有这么多钱哦！

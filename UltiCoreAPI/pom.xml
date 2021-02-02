@@ -5,7 +5,7 @@
     <parent>
         <artifactId>UltiCore-Core</artifactId>
         <groupId>com.github.wisdommen</groupId>
-        <version>1.1.4</version>
+        <version>1.1.5</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -82,103 +82,103 @@
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>API</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>1_12_R1</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>1_16_R1</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>1_16_R2</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>1_15_R1</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>1_14_4_R1</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>1_14_R1</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>1_13_R2</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>1_13_R1</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>1_10_R1</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>1_11_R1</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>1_9_R2</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>1_9_R1</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>1_8_R3</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>1_8_R2</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>1_8_R1</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>1_16_R3</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

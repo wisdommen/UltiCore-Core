@@ -83,7 +83,11 @@ public class Wrapper1_13_R1 implements VersionWrapper {
     }
 
     public Objective registerNewObjective(Scoreboard scoreboard, String name, String criteria, String displayName) {
-        return scoreboard.registerNewObjective("侧边栏", "", ChatColor.DARK_AQUA + displayName);
+        Objective objective = scoreboard.getObjective(name);
+        if (objective == null){
+            objective = scoreboard.registerNewObjective(name, criteria, displayName);
+        }
+        return objective;
     }
 
     public Sound getSound(Sounds sound) {
