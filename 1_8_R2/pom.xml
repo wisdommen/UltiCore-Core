@@ -5,7 +5,7 @@
     <parent>
         <artifactId>UltiCore-Core</artifactId>
         <groupId>com.github.wisdommen</groupId>
-        <version>1.1.5</version>
+        <version>1.1.6</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -21,7 +21,7 @@
         <dependency>
             <groupId>com.github.wisdommen</groupId>
             <artifactId>API</artifactId>
-            <version>1.1.5</version>
+            <version>1.1.6</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
