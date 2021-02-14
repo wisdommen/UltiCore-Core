@@ -25,4 +25,13 @@ public class EmailBean implements Serializable {
     public String getContent() {
         return content;
     }
+
+    @Override
+    public String toString() {
+        return "{"
+                + "\"emailAddress\":\"" + emailAddress + "\""
+                + ", \"title\":\"" + title + "\""
+                + ", \"content\":\"" + content + "\""
+                + "}";
+    }
 }
